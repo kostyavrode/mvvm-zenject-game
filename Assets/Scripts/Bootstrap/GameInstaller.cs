@@ -12,7 +12,7 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    // Ссылки на UI элементы
+
     public MainMenuView mainMenuView;
     public PauseMenuView pauseMenuView;
     public PlayingMenuView playingMenuView;
@@ -26,7 +26,7 @@ public class GameInstaller : MonoInstaller
 
     private void BindUI()
     {
-        // Биндим UI компоненты
+
         Container.Bind<MainMenuView>().FromInstance(mainMenuView).AsSingle();
         Container.Bind<PauseMenuView>().FromInstance(pauseMenuView).AsSingle();
         Container.Bind<PlayingMenuView>().FromInstance(playingMenuView).AsSingle();
@@ -42,7 +42,7 @@ public class GameInstaller : MonoInstaller
 
     private void BindServices()
     {
-        // Биндим сервисы
+
         Container.Bind<IGameStateService>().To<GameStateService>().AsSingle();
         Container.Bind<IUIService>().To<UIService>().AsSingle()
             .WithArguments(mainMenuView, pauseMenuView, playingMenuView);
