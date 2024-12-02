@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using GameState;
+using Interfaces;
 using Services;
 using Services.Input;
+using Services.Levels;
 using UI.Model;
 using UI.View;
 using UI.ViewModel;
@@ -47,5 +49,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IUIService>().To<UIService>().AsSingle()
             .WithArguments(mainMenuView, pauseMenuView, playingMenuView);
         Container.Bind<IInputService>().To<InputService>().AsSingle();
+        Container.Bind<IlevelResultService>().To<LevelResultService>().AsSingle();
     }
 }

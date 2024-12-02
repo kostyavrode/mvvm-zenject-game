@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameState.States;
+using Interfaces;
 using Services;
 using UniRx;
 using UnityEngine;
@@ -13,13 +14,14 @@ namespace GameState
 
         public IReadOnlyReactiveProperty<GameStates> CurrentState => _currentState;
 
-        public GameStateService(IUIService uiService)
+        public GameStateService(IUIService uiService, IlevelResultService levelResultService)
         {
             _states = new Dictionary<GameStates, IGameState>
             {
                 { GameStates.Menu, new MenuState(uiService) },
                 { GameStates.Playing, new PlayingState(uiService) },
-                { GameStates.Pause, new PauseState(uiService) }
+                { GameStates.Pause, new PauseState(uiService) },
+                { GameStates.Finish , new FinishedState(uiService, levelResultService)}
             };
         }
     
