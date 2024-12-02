@@ -16,7 +16,8 @@ namespace GameState.States
         public void Enter()
         {
             _uiService.ShowFinishMenu();
-            _levelResultService.SetLevelResult(false,0,0);
+            _levelResultService.SetLevelResult(_levelResultService.GetLevelSuccess()
+                ,_levelResultService.GetCompletionTime(),_levelResultService.GetScore());
         }
 
         public void Exit()
