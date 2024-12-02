@@ -4,7 +4,9 @@ using System.ComponentModel;
 using GameState;
 using Services;
 using Services.Input;
+using UI.Model;
 using UI.View;
+using UI.ViewModel;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +23,12 @@ public class GameInstaller : MonoInstaller
         Container.Bind<MainMenuView>().FromInstance(mainMenuView).AsSingle();
         Container.Bind<PauseMenuView>().FromInstance(pauseMenuView).AsSingle();
         Container.Bind<PlayingMenuView>().FromInstance(playingMenuView).AsSingle();
+        
+        Container.Bind<MainMenuViewModel>().AsSingle();
+        Container.Bind<PauseMenuViewModel>().AsSingle();
+        Container.Bind<PlayingMenuViewModel>().AsSingle();
+        
+        Container.Bind<FinishMenuModel>().AsSingle();
 
         // Биндим сервисы
         Container.Bind<IGameStateService>().To<GameStateService>().AsSingle();

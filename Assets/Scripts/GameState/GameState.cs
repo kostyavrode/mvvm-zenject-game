@@ -4,6 +4,7 @@
     {
         Menu,
         Playing,
-        Pause
+        Pause,
+        Finish
     }
 }

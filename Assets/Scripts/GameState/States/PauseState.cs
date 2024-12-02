@@ -15,7 +15,7 @@ namespace GameState.States
         public void Enter()
         {
             _uiService.ShowPauseMenu();
-            Time.timeScale = 0f; // Останавливаем игру
+            Time.timeScale = 0f;
         }
 
         public void Exit()

@@ -43,5 +43,15 @@ namespace Services
         {
             _pauseMenuView.gameObject.SetActive(false);
         }
+
+        public void ShowFinishMenu()
+        {
+            
+        }
+
+        public void HideFinishMenu()
+        {
+            
+        }
     }
 }

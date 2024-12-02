@@ -8,5 +8,7 @@
         void HidePauseMenu();
         void ShowPlayingMenu();
         void HidePlayingMenu();
+        void ShowFinishMenu();
+        void HideFinishMenu();
     }
 }

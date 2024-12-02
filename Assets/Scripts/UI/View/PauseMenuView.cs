@@ -1,4 +1,5 @@
 ﻿using GameState;
+using UI.ViewModel;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,64 +11,39 @@ namespace UI.View
     {
         [SerializeField] private Button resumeButton; 
         [SerializeField] private Button mainMenuButton; 
-        [SerializeField] private Button quitButton;  
 
         private IGameStateService _gameStateService;
-
+        private PauseMenuViewModel _viewModel;
         
         [Inject]
-        public void Construct(IGameStateService gameStateService)
+        public void Construct(IGameStateService gameStateService, PauseMenuViewModel viewModel)
         {
             _gameStateService = gameStateService;
+            _viewModel = viewModel;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void Start()
         {
             resumeButton.OnClickAsObservable()
-                .Subscribe(_ => OnResumeGame())
+                .Subscribe(_ => ResumeGameButtonClicked())
                 .AddTo(this);
             
             mainMenuButton.OnClickAsObservable()
-                .Subscribe(_ => OnReturnToMainMenu())
-                .AddTo(this);
-            
-            quitButton.OnClickAsObservable()
-                .Subscribe(_ => OnQuitGame())
+                .Subscribe(_ => MainMenuButtonClicked())
                 .AddTo(this);
         }
 
- 
         // ReSharper disable Unity.PerformanceAnalysis
-        private void OnResumeGame()
+        public void ResumeGameButtonClicked()
         {
-
-            _gameStateService.ChangeState(GameStates.Playing);
+            _viewModel.OnResumeGame();
         }
-
 
         // ReSharper disable Unity.PerformanceAnalysis
-        private void OnReturnToMainMenu()
+        public void MainMenuButtonClicked()
         {
-
-            _gameStateService.ChangeState(GameStates.Menu);
-        }
-
-
-        private void OnQuitGame()
-        {
-            Application.Quit();
-        }
-
-
-        public void ShowPauseMenu()
-        {
-            gameObject.SetActive(true);
-        }
-
-
-        public void HidePauseMenu()
-        {
-            gameObject.SetActive(false);
+            _viewModel.OnMainMenu();
         }
     }
 }

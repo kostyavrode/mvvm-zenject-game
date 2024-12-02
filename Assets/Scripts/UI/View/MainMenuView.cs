@@ -14,57 +14,47 @@ namespace UI.View
         [SerializeField] private Button settingsButton;
 
         private IGameStateService _gameStateService;
-
+        private MainMenuViewModel _viewModel;
 
         [Inject]
-        public void Construct(IGameStateService gameStateService)
+        public void Construct(IGameStateService gameStateService, MainMenuViewModel viewModel)
         {
             _gameStateService = gameStateService;
+        _viewModel = viewModel;
         }
 
         private void Start()
         {
 
             startButton.OnClickAsObservable()
-                .Subscribe(_ => OnStartGame())
+                .Subscribe(_ => StartGameButtonClicked())
                 .AddTo(this);
 
   
             shopButton.OnClickAsObservable()
-                .Subscribe(_ => OnOpenShop())
+                .Subscribe(_ => ShopButtonClicked())
                 .AddTo(this);
 
   
             settingsButton.OnClickAsObservable()
-                .Subscribe(_ => OnOpenSettings())
+                .Subscribe(_ => SettingsButtonClicked())
                 .AddTo(this);
             _gameStateService.ChangeState(GameStates.Menu);
         }
-        
-        public void OnStartGame()
+
+        public void StartGameButtonClicked()
         {
-            _gameStateService.ChangeState(GameStates.Playing);
-        }
-        
-        public void OnOpenShop()
-        {
-            // Логика открытия магазина (например, через состояние или панель)
+            _viewModel.OnStartGame();
         }
 
-        // Метод для открытия настроек
-        public void OnOpenSettings()
+        public void SettingsButtonClicked()
         {
-            // Логика открытия настроек (например, через панель)
+            _viewModel.OnSettings();
         }
-        
-        public void ShowMainMenu()
+
+        public void ShopButtonClicked()
         {
-            gameObject.SetActive(true);
-        }
-        
-        public void HideMainMenu()
-        {
-            gameObject.SetActive(false);
+            _viewModel.OnShop();
         }
     }
 }

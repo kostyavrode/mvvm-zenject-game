@@ -1,4 +1,5 @@
 ﻿using GameState;
+using UI.ViewModel;
 using UniRx;
 using Zenject;
 using UnityEngine;
@@ -9,64 +10,42 @@ namespace UI.View
     public class PlayingMenuView : MonoBehaviour
     {
         [SerializeField] private Button pauseButton;
-        [SerializeField] private Button saveButton;
         [SerializeField] private Button quitButton;
 
         private IGameStateService _gameStateService;
+        private PlayingMenuViewModel _viewModel;
         
         [Inject]
-        public void Construct(IGameStateService gameStateService)
+        public void Construct(IGameStateService gameStateService, PlayingMenuViewModel viewModel)
         {
             _gameStateService = gameStateService;
+            _viewModel = viewModel;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void Start()
         {
  
             pauseButton.OnClickAsObservable()
-                .Subscribe(_ => OnPauseGame())
+                .Subscribe(_ => PauseGameButtonClicked())
                 .AddTo(this);
-
-
-            saveButton.OnClickAsObservable()
-                .Subscribe(_ => OnSaveGame())
-                .AddTo(this);
-
  
             quitButton.OnClickAsObservable()
-                .Subscribe(_ => OnReturnToMainMenu())
+                .Subscribe(_ => GameOverButtonClicked())
                 .AddTo(this);
             
         }
 
-        // Метод для паузы игры
-        private void OnPauseGame()
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void PauseGameButtonClicked()
         {
-            _gameStateService.ChangeState(GameStates.Pause);  // Переводим игру в состояние паузы
+            _viewModel.OnPauseGame();
         }
 
-        // Метод для сохранения игры
-        private void OnSaveGame()
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void GameOverButtonClicked()
         {
-            // Логика сохранения игры
-        }
-
-        // Метод для выхода в главное меню
-        private void OnReturnToMainMenu()
-        {
-            _gameStateService.ChangeState(GameStates.Menu);  // Переход в главное меню
-        }
-
-        // Метод для отображения меню в процессе игры
-        public void ShowPlayingMenu()
-        {
-            gameObject.SetActive(true);
-        }
-
-        // Метод для скрытия меню в процессе игры
-        public void HidePlayingMenu()
-        {
-            gameObject.SetActive(false);
+            _viewModel.OnGameOver();
         }
     }
     }
