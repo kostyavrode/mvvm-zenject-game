@@ -21,7 +21,8 @@ namespace GameState
                 { GameStates.Menu, new MenuState(uiService) },
                 { GameStates.Playing, new PlayingState(uiService) },
                 { GameStates.Pause, new PauseState(uiService) },
-                { GameStates.Finish , new FinishedState(uiService, levelResultService)}
+                { GameStates.Finish , new FinishedState(uiService, levelResultService)},
+                { GameStates.Settings , new SettingsState(uiService)}
             };
         }
     

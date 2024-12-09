@@ -23,7 +23,7 @@ namespace Bootstrap
 
         private void InitializeGame()
         {
-            _gameStateService.ChangeState(GameStates.Menu);
+            //_gameStateService.ChangeState(GameStates.Menu);
         }
         
     }

@@ -8,12 +8,17 @@ namespace Services
         private readonly MainMenuView _mainMenuView;
         private readonly PauseMenuView _pauseMenuView;
         private readonly PlayingMenuView _playingMenuView;
+        private readonly FinishMenuView _finishMenuView;
+        private readonly SettingsMenuView _settingsMenuView;
 
-        public UIService(MainMenuView mainMenuView, PauseMenuView pauseMenuView, PlayingMenuView playingMenuView)
+        public UIService(MainMenuView mainMenuView, PauseMenuView pauseMenuView, PlayingMenuView playingMenuView,
+            FinishMenuView finishMenuView, SettingsMenuView settingsMenuView)
         {
             _mainMenuView = mainMenuView;
             _pauseMenuView = pauseMenuView;
-            _playingMenuView= playingMenuView;
+            _playingMenuView = playingMenuView;
+            _finishMenuView = finishMenuView;
+            _settingsMenuView = settingsMenuView;
         }
 
         public void ShowPlayingMenu()
@@ -46,12 +51,22 @@ namespace Services
 
         public void ShowFinishMenu()
         {
-            
+              _finishMenuView.gameObject.SetActive(true);
         }
 
         public void HideFinishMenu()
         {
-            
+            _finishMenuView.gameObject.SetActive(false);
+        }
+
+        public void ShowSettingsMenu()
+        {
+            _settingsMenuView.gameObject.SetActive(true);
+        }
+
+        public void HideSettingsMenu()
+        {
+            _settingsMenuView.gameObject.SetActive(false);
         }
     }
 }

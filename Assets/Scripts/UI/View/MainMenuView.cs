@@ -12,15 +12,13 @@ namespace UI.View
         [SerializeField] private Button startButton;
         [SerializeField] private Button shopButton;
         [SerializeField] private Button settingsButton;
-
-        private IGameStateService _gameStateService;
+        
         private MainMenuViewModel _viewModel;
 
         [Inject]
-        public void Construct(IGameStateService gameStateService, MainMenuViewModel viewModel)
+        public void Construct(MainMenuViewModel viewModel)
         {
-            _gameStateService = gameStateService;
-        _viewModel = viewModel;
+            _viewModel = viewModel;
         }
 
         private void Start()
@@ -39,7 +37,6 @@ namespace UI.View
             settingsButton.OnClickAsObservable()
                 .Subscribe(_ => SettingsButtonClicked())
                 .AddTo(this);
-            _gameStateService.ChangeState(GameStates.Menu);
         }
 
         public void StartGameButtonClicked()

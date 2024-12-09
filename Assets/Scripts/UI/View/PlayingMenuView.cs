@@ -12,13 +12,12 @@ namespace UI.View
         [SerializeField] private Button pauseButton;
         [SerializeField] private Button quitButton;
 
-        private IGameStateService _gameStateService;
+
         private PlayingMenuViewModel _viewModel;
         
         [Inject]
-        public void Construct(IGameStateService gameStateService, PlayingMenuViewModel viewModel)
+        public void Construct(PlayingMenuViewModel viewModel)
         {
-            _gameStateService = gameStateService;
             _viewModel = viewModel;
         }
 

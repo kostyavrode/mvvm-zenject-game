@@ -16,7 +16,7 @@ using GameState;
 
         public void OnSettings()
         {
-            // Логика для перехода в настройки
+            _gameStateService.ChangeState(GameStates.Settings);
         }
 
         public void OnShop()

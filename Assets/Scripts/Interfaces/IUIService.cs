@@ -10,5 +10,7 @@
         void HidePlayingMenu();
         void ShowFinishMenu();
         void HideFinishMenu();
+        void ShowSettingsMenu();
+        void HideSettingsMenu();
     }
 }

@@ -5,6 +5,7 @@
         Menu,
         Playing,
         Pause,
-        Finish
+        Finish,
+        Settings
     }
 }
