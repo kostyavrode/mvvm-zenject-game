@@ -30,7 +30,8 @@ public class GameInstaller : MonoInstaller
 
     private void BindUI()
     {
-
+        Container.Bind<FinishMenuModel>().AsSingle().WithArguments(false,0f,0,"empty");
+        
         Container.Bind<MainMenuView>().FromInstance(mainMenuView).AsSingle();
         Container.Bind<PauseMenuView>().FromInstance(pauseMenuView).AsSingle();
         Container.Bind<PlayingMenuView>().FromInstance(playingMenuView).AsSingle();
@@ -42,8 +43,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<PlayingMenuViewModel>().AsSingle();
         Container.Bind<SettingsMenuViewModel>().AsSingle();
         Container.Bind<FinishMenuViewModel>().AsSingle();
-        
-        Container.Bind<FinishMenuModel>().AsSingle().WithArguments(false,0f,0,"empty");
     }
 
     private void BindServices()
